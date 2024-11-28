@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const wrapAysnc = require("../utils/wrapAysnc");
 const ExpressError = require("../utils/ExpressError");
-const { verifyToken, querySchema, isAuthenticate } = require("../middleware");
+const { verifyToken, querySchema } = require("../middleware");
 const {
   getQueryController,
   getQueryByIdController,
@@ -21,32 +21,16 @@ const queryValidate = (req, res, next) => {
   }
 };
 
-router.get(
-  "/query",
-  // isAuthenticate,
-  verifyToken,
-  wrapAysnc(getQueryController)
-);
+router.get("/query", verifyToken, wrapAysnc(getQueryController));
 
-router.get(
-  "/search/:id",
-  // isAuthenticate,
-  verifyToken,
-  wrapAysnc(getQueryByIdController)
-);
+router.get("/search/:id", verifyToken, wrapAysnc(getQueryByIdController));
 router.post("/query", queryValidate, wrapAysnc(addQueryController));
 
 router.delete(
   "/query/delete/all",
-  isAuthenticate,
   verifyToken,
   wrapAysnc(deleteAllQueryController)
 );
-router.delete(
-  "/query/delete/:id",
-  isAuthenticate,
-  verifyToken,
-  wrapAysnc(deleteOneController)
-);
+router.delete("/query/delete/:id", verifyToken, wrapAysnc(deleteOneController));
 
 module.exports = router;

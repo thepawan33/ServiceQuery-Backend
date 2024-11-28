@@ -9,13 +9,6 @@ module.exports.querySchema = Joi.object({
   message: Joi.string().required(),
 });
 
-module.exports.isAuthenticate = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.status(401).json({ message: "Unauthorized" });
-};
-
 module.exports.verifyToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
 

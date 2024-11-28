@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 module.exports.loginController = (req, res) => {
   let { username } = req.body;
   const accessToken = jwt.sign({ username }, process.env.TOKEN_SECRET, {
-    expiresIn: "3m",
+    expiresIn: "15m",
   });
   const refreshToken = jwt.sign({ username }, process.env.TOKEN_SECRET, {
     expiresIn: "7d",
