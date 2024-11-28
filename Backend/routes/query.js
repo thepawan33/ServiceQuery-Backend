@@ -30,7 +30,7 @@ router.get(
 
 router.get(
   "/search/:id",
-  isAuthenticate,
+  // isAuthenticate,
   verifyToken,
   wrapAysnc(getQueryByIdController)
 );
