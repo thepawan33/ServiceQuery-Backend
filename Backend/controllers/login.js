@@ -10,7 +10,7 @@ module.exports.loginController = (req, res) => {
   res.cookie("refresh_Token", refreshToken, {
     httpOnly: true,
     secure: true,
-    sameSite: "strict",
+    sameSite: "none",
     maxAge: 7 * 24 * 60 * 60 * 1000,
     signed: true,
   });
