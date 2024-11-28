@@ -23,7 +23,7 @@ const queryValidate = (req, res, next) => {
 
 router.get(
   "/query",
-  isAuthenticate,
+  // isAuthenticate,
   verifyToken,
   wrapAysnc(getQueryController)
 );
