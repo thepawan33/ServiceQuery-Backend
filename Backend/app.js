@@ -51,8 +51,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(flash());
-// app.use(cors({ origin: process.env.ORIGIN, credentials: true }));
-app.use(cors());
+app.use(cors({ origin: process.env.ORIGIN, credentials: true }));
 
 app.use(session(sessionOptions));
 app.use(cookieParser(process.env.COOKIE_PARSE_SECRET));
