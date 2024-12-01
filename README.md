@@ -50,4 +50,4 @@ This backend uses **Node.js** with **Express.js** to handle routing, **MongoDB**
 
 - **wrapAsync**: A utility function used for error handling in asynchronous route handlers to ensure proper exception management.
 
-- **Dotenv**: Dotenv is used for managing environment variables, like JWT secret keys, database credentials, etc.
+- **Dotenv**: Dotenv is used for managing environment variables, like JWT secret keys, database credentials, etc..
