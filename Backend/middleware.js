@@ -9,6 +9,19 @@ module.exports.querySchema = Joi.object({
   message: Joi.string().required(),
 });
 
+module.exports.verifyHeader = (req, res, next) => {
+  const authHeader = req.headers.authorization?.trim();
+
+  if (!authHeader) {
+    return res.status(401).json({ message: "Authorization header missing" });
+  }
+
+  if (!authHeader.startsWith(`${process.env.API_SECRET}`)) {
+    return res.status(403).json({ message: "Invalid authorization header" });
+  }
+  next();
+};
+
 module.exports.verifyToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
 

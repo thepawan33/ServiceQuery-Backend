@@ -5,13 +5,15 @@ const {
   loginController,
   refreshTokenController,
 } = require("../controllers/login");
+const { verifyHeader } = require("../middleware");
 
 router.post(
   "/login",
+  verifyHeader,
   passport.authenticate("local", { failureFlash: true }),
   loginController
 );
 
-router.post("/token", refreshTokenController);
+router.post("/token", verifyHeader, refreshTokenController);
 
 module.exports = router;
