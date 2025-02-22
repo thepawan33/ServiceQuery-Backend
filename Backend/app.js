@@ -7,8 +7,8 @@ if (process.env.NODE_ENV != "production") {
 const mongoUrl = process.env.ATLASDB_URL;
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
-const loginRoute = require("./routes/login");
-const queryRoute = require("./routes/query");
+const authRoutes = require("./routes/authRoutes");
+const queryRoutes = require("./routes/queryRoutes");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const Admin = require("./models/admin");
@@ -43,8 +43,8 @@ passport.use(new LocalStrategy(Admin.authenticate()));
 passport.serializeUser(Admin.serializeUser());
 passport.deserializeUser(Admin.deserializeUser());
 
-app.use("/", queryRoute);
-app.use("/admin", loginRoute);
+app.use("/", queryRoutes);
+app.use("/admin", authRoutes);
 
 app.get("*", (req, res) => {
   throw new ExpressError(404, "Bad Request! Page Not Found");

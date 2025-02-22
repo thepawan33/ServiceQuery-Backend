@@ -1,13 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
+const { verifyHeader } = require("../middleware");
+const wrapAysnc = require("../utils/wrapAysnc");
 
 const {
   loginController,
+} = require("../controllers/authController/loginController");
+const {
   refreshTokenController,
-} = require("../controllers/login");
-const { verifyHeader } = require("../middleware");
-const wrapAysnc = require("../utils/wrapAysnc");
+} = require("../controllers/authController/refreshTokenController");
 
 router.post(
   "/login",
